@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-const Wrapper = styled.p`
-	font-size: 2rem;
-
+const Wrapper = styled.section`
 	.home-container {
 		position: absolute;
 		width: 100%;
