@@ -7,9 +7,16 @@ dotenv.config();
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
 
+// routers
+import homeRouter from "./routes/homeRoutes.js";
+
+app.use(express.json());
+
 app.get("/", (req, res) => {
 	res.send("Welcome");
 });
+
+app.use("/api", homeRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

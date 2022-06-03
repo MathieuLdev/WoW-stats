@@ -5,16 +5,21 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"start": "nodemon server",
+		"server": "nodemon server --ignore client",
+		"client": "npm start --prefix ../client",
+		"start": "concurrently --kill-others-on-fail \" npm run server\" \" npm run client\"",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "ISC",
 	"devDependencies": {
+		"concurrently": "^7.2.1",
 		"nodemon": "^2.0.16"
 	},
 	"dependencies": {
+		"blizzapi": "^2.1.1",
+		"blizzard.js": "^4.2.0",
 		"dotenv": "^16.0.1",
 		"express": "^4.18.1"
 	}
