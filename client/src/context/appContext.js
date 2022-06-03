@@ -22,13 +22,12 @@ const AppProvider = ({ children }) => {
 	};
 
 	const fetchRealmsList = async () => {
-		const token = process.env.REACT_APP_ACCESS_TOKEN;
-		const { region } = state;
-		const url = `https://${region}.api.blizzard.com/data/wow/realm/index?namespace=dynamic-${region}&locale=fr_FR&access_token=${token}`;
-		const { data } = await axios.get(url);
+		const { data } = await axios.get("/api/home");
+
+		console.log(data);
 		dispatch({
 			type: FETCH_REALMS,
-			payload: data.realms,
+			payload: data,
 		});
 	};
 
