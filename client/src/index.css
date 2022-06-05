@@ -65,15 +65,51 @@ h5 {
 	font-size: 1.25rem;
 }
 
+select,
+input,
 a {
-	text-decoration: none;
-	letter-spacing: var(--letterSpacing);
-}
-
-a,
-button {
+	height: 2.8rem;
+	font-size: 1.4rem;
+	color: var(--primary-color);
+	width: 300px;
+	margin: 0 auto 5px;
+	padding-left: 5px;
+	background: transparent;
+	backdrop-filter: blur(4px);
+	border: 2px solid;
+	border-color: var(--primary-color);
 	line-height: 1.15;
 }
+
+option {
+	color: var(--primary-color);
+	background: rgba(0, 0, 0, 0.9);
+}
+
+select,
+input[type="submit"],
+a {
+	cursor: pointer;
+}
+
+input[type="submit"],
+a {
+	position: relative;
+	transition: var(--transition);
+}
+
+a:hover,
+input[type="submit"]:hover {
+	color: rgba(0, 0, 0, 0.9);
+	background: var(--primary-color);
+}
+
+a:focus,
+input[type="submit"]:hover {
+	border-radius: 30px;
+	letter-spacing: 2px;
+}
+
 button:disabled {
 	cursor: not-allowed;
 }
