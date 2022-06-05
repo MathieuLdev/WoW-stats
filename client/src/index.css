@@ -13,6 +13,13 @@
 	--transition: 0.3s ease-in-out all;
 }
 
+.horde {
+	background: url(./assets/img/back-horde.jpg) center/cover fixed;
+}
+.alliance {
+	background: url(./assets/img/back-alliance.jpg) center/cover fixed;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -25,7 +32,6 @@
 }
 
 body {
-	background: url(./assets/img/back-wow.jpg) center/cover fixed;
 	overflow: hidden;
 	font-size: 1.2rem;
 	line-height: 1.75;
@@ -67,7 +73,8 @@ h5 {
 
 select,
 input,
-a {
+a,
+button {
 	height: 2.8rem;
 	font-size: 1.4rem;
 	color: var(--primary-color);
@@ -78,6 +85,7 @@ a {
 	backdrop-filter: blur(4px);
 	border: 2px solid;
 	border-color: var(--primary-color);
+	border-radius: 8px;
 	line-height: 1.15;
 }
 
@@ -88,26 +96,30 @@ option {
 
 select,
 input[type="submit"],
-a {
+a,
+button {
 	cursor: pointer;
 }
 
 input[type="submit"],
-a {
+a,
+button {
 	position: relative;
 	transition: var(--transition);
 }
 
 a:hover,
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+button:hover {
 	color: rgba(0, 0, 0, 0.9);
 	background: var(--primary-color);
 }
 
 a:focus,
-input[type="submit"]:hover {
+input[type="submit"]:hover,
+button:hover {
 	border-radius: 30px;
-	letter-spacing: 2px;
+	letter-spacing: 1.6px;
 }
 
 button:disabled {

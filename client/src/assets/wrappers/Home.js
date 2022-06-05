@@ -11,6 +11,10 @@ const Wrapper = styled.section`
 		display: block;
 		margin: 20px auto;
 	}
+
+	.title-container {
+		margin: 30px auto 80px;
+	}
 `;
 
 export default Wrapper;
