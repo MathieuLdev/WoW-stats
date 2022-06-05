@@ -2,6 +2,7 @@ import express from "express";
 const app = express();
 import dotenv from "dotenv";
 dotenv.config();
+import cors from "cors";
 
 // Middleware
 import notFoundMiddleware from "./middleware/not-found.js";
@@ -10,6 +11,7 @@ import errorHandlerMiddleware from "./middleware/error-handler.js";
 // routers
 import homeRouter from "./routes/homeRoutes.js";
 
+app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {

@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import { getRealms } from "../controllers/homeController.js";
+import { getRealms, postRealmVar } from "../controllers/homeController.js";
 
-router.route("/home").get(getRealms);
+router.route("/home").post(postRealmVar).get(getRealms);
 
 export default router;

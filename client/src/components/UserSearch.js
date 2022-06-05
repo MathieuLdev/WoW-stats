@@ -6,10 +6,11 @@ const UserSearch = () => {
 	const { toggleRegion, region, fetchRealmsList, setRealm, realmsList } =
 		useAppContext();
 
-	const getReamlsInfos = (e) => {
-		const selectBox = document.getElementById("realmsList");
-		const selectedValue = selectBox.options[selectBox.selectedIndex].id;
-		setRealm(e.target.value, selectedValue);
+	const getRealmsInfos = (e) => {
+		const selectRealmsList = document.getElementById("realmsList");
+		const selectedSlug =
+			selectRealmsList.options[selectRealmsList.selectedIndex].id;
+		setRealm({ realm: e.target.value, slug: selectedSlug });
 	};
 
 	useEffect(() => {
@@ -38,7 +39,7 @@ const UserSearch = () => {
 						id="realmsList"
 						className="realmsList"
 						required
-						onChange={getReamlsInfos}
+						onChange={getRealmsInfos}
 					>
 						<option value="select">Select a realm</option>
 						{realmsList

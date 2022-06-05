@@ -22,21 +22,23 @@ const AppProvider = ({ children }) => {
 	};
 
 	const fetchRealmsList = async () => {
-		const { data } = await axios.get("/api/home");
+		await axios.post("/api/home", {
+			region: state.region,
+		});
 
-		console.log(data);
+		const { data } = await axios.get("/api/home");
 		dispatch({
 			type: FETCH_REALMS,
 			payload: data,
 		});
 	};
 
-	const setRealm = (realm, slug) => {
+	const setRealm = ({ realm, slug }) => {
 		dispatch({ type: SET_REALM, payload: { realm, slug } });
 	};
 
 	const getUser = async () => {
-		console.log("hello");
+		console.log("getUser");
 	};
 
 	return (

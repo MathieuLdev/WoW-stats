@@ -1,31 +1,18 @@
-// import { wow } from "blizzard.js";
-import { BlizzAPI } from "blizzapi";
+import { wow } from "blizzard.js";
 
-const getRealms = async (req, res) => {
-	// const wowClient = await wow.createInstance({
-	// 	key: process.env.BLIZZARD_CLIENT_ID,
-	// 	secret: process.env.BLIZZARD_CLIENT_SECRET,
-	// 	origin: "us", // optional
-	// 	locale: "en_US", // optional
-	// 	token: "", // optional
-	// });
-	// const headers = await wowClient.defaults;
-	// const response = await wow.realm(null, headers);
-	// const test = await realm(null, headers);
-
-	const BnetApi = new BlizzAPI({
-		region: "eu",
-		clientId: process.env.BLIZZARD_CLIENT_ID,
-		clientSecret: process.env.BLIZZARD_CLIENT_SECRET,
-	});
-	await BnetApi.getAccessToken();
-	const realmsList = await BnetApi.query(
-		"/data/wow/realm/index?namespace=dynamic-eu&locale=fr_FR",
-	);
-	const { realms } = realmsList;
-
-	console.log("hello");
-	res.status(200).send(realms);
+const postRealmVar = (req, res) => {
+	res.status(200).send(req.body.region);
 };
 
-export { getRealms };
+const getRealms = async (req, res) => {
+	const blizzard = await wow.createInstance({
+		key: process.env.BLIZZARD_CLIENT_ID,
+		secret: process.env.BLIZZARD_CLIENT_SECRET,
+	});
+
+	const { data } = await blizzard.realm({ origin: "eu" });
+	const realmsList = data.realms;
+	res.status(200).send(realmsList);
+};
+
+export { getRealms, postRealmVar };
