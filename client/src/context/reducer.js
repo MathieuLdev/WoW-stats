@@ -1,4 +1,9 @@
-import { FETCH_REALMS, SET_REALM, SET_REGION } from "./actions";
+import {
+	FETCH_REALMS,
+	SET_CHARACTER_NAME,
+	SET_REALM,
+	SET_REGION,
+} from "./actions";
 
 const reducer = (state, action) => {
 	if (action.type === SET_REGION) {
@@ -20,6 +25,13 @@ const reducer = (state, action) => {
 			realmSlug: action.payload.slug,
 		};
 	}
+	if (action.type === SET_CHARACTER_NAME) {
+		return {
+			...state,
+			characterName: action.payload,
+		};
+	}
+
 	throw new Error(`No such action: ${action.type}`);
 };
 

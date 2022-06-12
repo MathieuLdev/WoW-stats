@@ -73,8 +73,8 @@ h5 {
 
 select,
 input,
-a,
-button {
+button,
+a {
 	height: 2.8rem;
 	font-size: 1.4rem;
 	color: var(--primary-color);
@@ -87,6 +87,12 @@ button {
 	border-color: var(--primary-color);
 	border-radius: 8px;
 	line-height: 1.15;
+}
+
+a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 option {
@@ -116,8 +122,7 @@ button:hover {
 }
 
 a:focus,
-input[type="submit"]:hover,
-button:hover {
+input[type="submit"]:hover {
 	border-radius: 30px;
 	letter-spacing: 1.6px;
 }

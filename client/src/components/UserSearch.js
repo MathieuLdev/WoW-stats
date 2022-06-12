@@ -1,15 +1,22 @@
 import { useEffect } from "react";
 import { useAppContext } from "../context/appContext";
 import Wrapper from "../assets/wrappers/UserSearch";
+import { NavLink } from "react-router-dom";
 
 const UserSearch = () => {
-	const { toggleRegion, region, fetchRealmsList, setRealm, realmsList } =
-		useAppContext();
+	const {
+		toggleRegion,
+		region,
+		fetchRealmsList,
+		setRealm,
+		realmsList,
+		setCharacterName,
+	} = useAppContext();
 
 	const getRealmsInfos = (e) => {
-		const selectRealmsList = document.getElementById("realmsList");
-		const selectedSlug =
-			selectRealmsList.options[selectRealmsList.selectedIndex].id;
+		const selectedSlug = realmsList.find(
+			(realmsList) => (realmsList.slug = e.target.value),
+		);
 		setRealm({ realm: e.target.value, slug: selectedSlug });
 	};
 
@@ -36,8 +43,8 @@ const UserSearch = () => {
 				</select>
 				{region ? (
 					<select
-						id="realmsList"
 						className="realmsList"
+						id="realmsList"
 						required
 						onChange={getRealmsInfos}
 					>
@@ -62,9 +69,9 @@ const UserSearch = () => {
 					type="text"
 					required
 					placeholder="Character name"
-					// onChange={(e) => setCharacterName(e.target.value.toLowerCase())}
+					onChange={(e) => setCharacterName(e.target.value.toLowerCase())}
 				/>
-				<input type="submit" value="Valider" className="test" />
+				<NavLink to="/user-hall">Valider</NavLink>
 			</form>
 		</Wrapper>
 	);
