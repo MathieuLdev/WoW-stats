@@ -8,6 +8,8 @@ import {
 	SET_REGION,
 	DISPLAY_ALERT,
 	CLEAR_ALERT,
+	GET_MEDIA_BEGIN,
+	GET_MEDIA_SUCCESS,
 } from "./actions";
 
 const initialState = {
@@ -19,6 +21,7 @@ const initialState = {
 	realm: "",
 	realmSlug: "",
 	characterName: "",
+	media: [],
 };
 
 const AppContext = React.createContext();
@@ -57,8 +60,19 @@ const AppProvider = ({ children }) => {
 		dispatch({ type: SET_CHARACTER_NAME, payload: characterName });
 	};
 
-	const getUser = async () => {
-		console.log("getUser");
+	const getUserMedia = async () => {
+		dispatch({ type: GET_MEDIA_BEGIN });
+		// try {
+		const { data } = await axios.get(
+			`/api/media?region=${state.region}&realm=${state.realmSlug}&name=${state.characterName}`,
+		);
+		dispatch({
+			type: GET_MEDIA_SUCCESS,
+			payload: data,
+		});
+		// } catch (error) {
+		// 	console.log("error during fetch");
+		// }
 	};
 
 	return (
@@ -66,7 +80,7 @@ const AppProvider = ({ children }) => {
 			value={{
 				...state,
 				toggleRegion,
-				getUser,
+				getUserMedia,
 				fetchRealmsList,
 				setRealm,
 				setCharacterName,

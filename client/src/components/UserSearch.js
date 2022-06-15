@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppContext } from "../context/appContext";
 import Wrapper from "../assets/wrappers/UserSearch";
 import { useNavigate } from "react-router-dom";
+import Alert from "./Alert";
 
 const UserSearch = () => {
 	const navigate = useNavigate();
@@ -16,7 +17,6 @@ const UserSearch = () => {
 		characterName,
 		displayAlert,
 		showAlert,
-		alertText,
 	} = useAppContext();
 
 	const getRealmsInfos = (e) => {
@@ -87,7 +87,7 @@ const UserSearch = () => {
 					onChange={(e) => setCharacterName(e.target.value.toLowerCase())}
 				/>
 				<button type="submit">Valider</button>
-				{showAlert && <p className="alert">{alertText}</p>}
+				{showAlert && <Alert />}
 			</form>
 		</Wrapper>
 	);

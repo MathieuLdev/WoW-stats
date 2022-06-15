@@ -5,6 +5,8 @@ import {
 	SET_REGION,
 	DISPLAY_ALERT,
 	CLEAR_ALERT,
+	GET_MEDIA_BEGIN,
+	GET_MEDIA_SUCCESS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -41,13 +43,28 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			realm: action.payload.realm,
-			realmSlug: action.payload.slug,
+			realmSlug: action.payload.slug.slug,
 		};
 	}
 	if (action.type === SET_CHARACTER_NAME) {
 		return {
 			...state,
 			characterName: action.payload,
+		};
+	}
+
+	if (action.type === GET_MEDIA_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+
+	if (action.type === GET_MEDIA_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			media: action.payload,
 		};
 	}
 

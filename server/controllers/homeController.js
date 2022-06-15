@@ -12,4 +12,22 @@ const getRealms = async (req, res) => {
 	res.status(200).send(realmsList);
 };
 
-export { getRealms };
+const getUserMedia = async (req, res) => {
+	const { region, name, realm } = req.query;
+	const blizzard = await wow.createInstance({
+		key: process.env.BLIZZARD_CLIENT_ID,
+		secret: process.env.BLIZZARD_CLIENT_SECRET,
+	});
+
+	const media = await blizzard.characterMedia({
+		origin: "eu",
+		realm: "ysondre",
+		name: "nemoo",
+	});
+	const {
+		data: { assets },
+	} = media;
+	res.status(200).send(assets);
+};
+
+export { getRealms, getUserMedia };

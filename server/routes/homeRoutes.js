@@ -1,7 +1,8 @@
 import express from "express";
 const router = express.Router();
-import { getRealms } from "../controllers/homeController.js";
+import { getRealms, getUserMedia } from "../controllers/homeController.js";
 
 router.route("/home").get(getRealms);
+router.route("/media").get(getUserMedia);
 
 export default router;
