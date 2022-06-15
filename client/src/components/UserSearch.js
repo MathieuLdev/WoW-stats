@@ -1,9 +1,10 @@
 import { useEffect } from "react";
 import { useAppContext } from "../context/appContext";
 import Wrapper from "../assets/wrappers/UserSearch";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const UserSearch = () => {
+	const navigate = useNavigate();
 	const {
 		toggleRegion,
 		region,
@@ -11,6 +12,11 @@ const UserSearch = () => {
 		setRealm,
 		realmsList,
 		setCharacterName,
+		realm,
+		characterName,
+		displayAlert,
+		showAlert,
+		alertText,
 	} = useAppContext();
 
 	const getRealmsInfos = (e) => {
@@ -18,6 +24,15 @@ const UserSearch = () => {
 			(realmsList) => (realmsList.slug = e.target.value),
 		);
 		setRealm({ realm: e.target.value, slug: selectedSlug });
+	};
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		if (!region || !realm || !characterName) {
+			displayAlert();
+			return;
+		}
+		navigate("/user-hall");
 	};
 
 	useEffect(() => {
@@ -29,7 +44,7 @@ const UserSearch = () => {
 
 	return (
 		<Wrapper>
-			<form className="form" noValidate>
+			<form className="form" noValidate onSubmit={handleSubmit}>
 				<select
 					className="realm"
 					required
@@ -71,7 +86,8 @@ const UserSearch = () => {
 					placeholder="Character name"
 					onChange={(e) => setCharacterName(e.target.value.toLowerCase())}
 				/>
-				<NavLink to="/user-hall">Valider</NavLink>
+				<button type="submit">Valider</button>
+				{showAlert && <p className="alert">{alertText}</p>}
 			</form>
 		</Wrapper>
 	);

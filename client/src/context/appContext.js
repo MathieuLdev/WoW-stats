@@ -6,10 +6,14 @@ import {
 	SET_CHARACTER_NAME,
 	SET_REALM,
 	SET_REGION,
+	DISPLAY_ALERT,
+	CLEAR_ALERT,
 } from "./actions";
 
 const initialState = {
 	isLoading: false,
+	showAlert: false,
+	alertText: "",
 	region: "",
 	realmsList: [],
 	realm: "",
@@ -21,6 +25,17 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
+
+	const displayAlert = () => {
+		dispatch({ type: DISPLAY_ALERT });
+		clearAlert();
+	};
+
+	const clearAlert = () => {
+		setTimeout(() => {
+			dispatch({ type: CLEAR_ALERT });
+		}, 3000);
+	};
 
 	const toggleRegion = (region) => {
 		dispatch({ type: SET_REGION, payload: region });
@@ -55,6 +70,8 @@ const AppProvider = ({ children }) => {
 				fetchRealmsList,
 				setRealm,
 				setCharacterName,
+				displayAlert,
+				clearAlert,
 			}}
 		>
 			{children}
