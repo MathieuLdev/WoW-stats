@@ -64,7 +64,8 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			isLoading: false,
-			media: action.payload,
+			media: action.payload.assets,
+			characterInfos: action.payload.characterInfos,
 		};
 	}
 

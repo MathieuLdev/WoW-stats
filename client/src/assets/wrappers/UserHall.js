@@ -7,6 +7,12 @@ const Wrapper = styled.div`
 		align-items: center;
 		height: 70vh;
 	}
+
+	@media screen and (max-width: 950px) {
+		.user-hall {
+			flex-direction: column;
+		}
+	}
 `;
 
 export default Wrapper;

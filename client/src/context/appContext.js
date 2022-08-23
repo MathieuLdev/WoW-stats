@@ -22,6 +22,7 @@ const initialState = {
 	realmSlug: "",
 	characterName: "",
 	media: [],
+	characterInfos: [],
 };
 
 const AppContext = React.createContext();
@@ -62,7 +63,6 @@ const AppProvider = ({ children }) => {
 
 	const getUserMedia = async () => {
 		dispatch({ type: GET_MEDIA_BEGIN });
-		// try {
 		const { data } = await axios.get(
 			`/api/media?region=${state.region}&realm=${state.realmSlug}&name=${state.characterName}`,
 		);
@@ -70,9 +70,6 @@ const AppProvider = ({ children }) => {
 			type: GET_MEDIA_SUCCESS,
 			payload: data,
 		});
-		// } catch (error) {
-		// 	console.log("error during fetch");
-		// }
 	};
 
 	return (
