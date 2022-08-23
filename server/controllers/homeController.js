@@ -13,39 +13,39 @@ const getRealms = async (req, res) => {
 };
 
 const getUserMedia = async (req, res) => {
-	const { region, name, realm } = req.query;
+	const { region, realm, name } = req.query;
 	const blizzard = await wow.createInstance({
 		key: process.env.BLIZZARD_CLIENT_ID,
 		secret: process.env.BLIZZARD_CLIENT_SECRET,
 	});
-	// console.log(req.query);
+
 	const media = await blizzard.characterMedia({
-		origin: "eu",
-		realm: "ysondre",
-		name: "nemoo",
+		origin: region,
+		realm: realm.toLowerCase(),
+		name: name,
 	});
 	const {
 		data: { assets },
 	} = media;
 
 	const profile = await blizzard.characterProfile({
-		origin: "eu",
-		realm: "ysondre",
-		name: "nemoo",
+		origin: region,
+		realm: realm.toLowerCase(),
+		name: name,
 	});
 
 	const {
-		data: { faction, race, guild, character_class, covenant_progress },
+		data: { faction, race, character_class },
 	} = profile;
 	const characterInfos = {
 		faction: faction.name,
 		class: character_class.name,
 		race: race.name,
-		covenant: covenant_progress.chosen_covenant.name,
-		guild: guild.name,
+		covenant: profile.data?.covenant_progress?.chosen_covenant?.name,
+		guild: profile.data?.guild?.name,
 	};
 
-	res.status(200).send({ assets: assets, characterInfos: characterInfos });
+	res.status(200).send({ assets, characterInfos });
 };
 
 export { getRealms, getUserMedia };

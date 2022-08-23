@@ -9,7 +9,7 @@ const Media = () => {
 		if (media.length === 0) {
 			getUserMedia();
 		}
-	}, [media]);
+	}, [characterInfos]);
 
 	if (isLoading) {
 		return <Loading />;
