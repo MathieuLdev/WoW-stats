@@ -15,6 +15,7 @@ const Wrapper = styled.div`
 		top: 50%;
 		transform: translateY(-50%);
 	}
+
 	@media screen and (max-width: 850px) {
 		.stats {
 			flex-direction: column;

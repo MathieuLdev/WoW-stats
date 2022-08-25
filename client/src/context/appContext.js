@@ -12,6 +12,8 @@ import {
 	GET_MEDIA_SUCCESS,
 	GET_STATS_BEGIN,
 	GET_STATS_SUCCESS,
+	GET_PVP_BEGIN,
+	GET_PVP_SUCCESS,
 } from "./actions";
 
 const initialState = {
@@ -26,6 +28,7 @@ const initialState = {
 	media: [],
 	characterInfos: [],
 	stats: [],
+	pvp: [],
 };
 
 const AppContext = React.createContext();
@@ -86,6 +89,17 @@ const AppProvider = ({ children }) => {
 		});
 	};
 
+	const getUserPvp = async () => {
+		dispatch({ type: GET_PVP_BEGIN });
+		const { data } = await axios.get(
+			`/api/pvp?region=${state.region}&realm=${state.realmSlug}&name=${state.characterName}`,
+		);
+		dispatch({
+			type: GET_PVP_SUCCESS,
+			payload: data,
+		});
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -98,6 +112,7 @@ const AppProvider = ({ children }) => {
 				displayAlert,
 				clearAlert,
 				getUserStats,
+				getUserPvp,
 			}}
 		>
 			{children}

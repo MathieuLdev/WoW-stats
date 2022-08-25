@@ -13,3 +13,6 @@ export const GET_MEDIA_SUCCESS = "GET_MEDIA_SUCCESS";
 
 export const GET_STATS_BEGIN = "GET_STATS_BEGIN";
 export const GET_STATS_SUCCESS = "GET_STATS_SUCCESS";
+
+export const GET_PVP_BEGIN = "GET_PVP_BEGIN";
+export const GET_PVP_SUCCESS = "GET_PVP_SUCCESS";

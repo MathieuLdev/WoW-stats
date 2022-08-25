@@ -9,6 +9,8 @@ import {
 	GET_MEDIA_SUCCESS,
 	GET_STATS_BEGIN,
 	GET_STATS_SUCCESS,
+	GET_PVP_BEGIN,
+	GET_PVP_SUCCESS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -83,6 +85,21 @@ const reducer = (state, action) => {
 			...state,
 			isLoading: false,
 			stats: action.payload,
+		};
+	}
+
+	if (action.type === GET_PVP_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+
+	if (action.type === GET_PVP_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			pvp: action.payload,
 		};
 	}
 
