@@ -21,7 +21,7 @@ const getUserMedia = async (req, res) => {
 
 	const media = await blizzard.characterMedia({
 		origin: region,
-		realm: realm.toLowerCase(),
+		realm: realm,
 		name: name,
 	});
 	const {
@@ -30,7 +30,7 @@ const getUserMedia = async (req, res) => {
 
 	const profile = await blizzard.characterProfile({
 		origin: region,
-		realm: realm.toLowerCase(),
+		realm: realm,
 		name: name,
 	});
 

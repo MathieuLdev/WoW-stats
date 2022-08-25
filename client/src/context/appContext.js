@@ -10,6 +10,8 @@ import {
 	CLEAR_ALERT,
 	GET_MEDIA_BEGIN,
 	GET_MEDIA_SUCCESS,
+	GET_STATS_BEGIN,
+	GET_STATS_SUCCESS,
 } from "./actions";
 
 const initialState = {
@@ -23,6 +25,7 @@ const initialState = {
 	characterName: "",
 	media: [],
 	characterInfos: [],
+	stats: [],
 };
 
 const AppContext = React.createContext();
@@ -72,6 +75,17 @@ const AppProvider = ({ children }) => {
 		});
 	};
 
+	const getUserStats = async () => {
+		dispatch({ type: GET_STATS_BEGIN });
+		const { data } = await axios.get(
+			`/api/stats?region=${state.region}&realm=${state.realmSlug}&name=${state.characterName}`,
+		);
+		dispatch({
+			type: GET_STATS_SUCCESS,
+			payload: data,
+		});
+	};
+
 	return (
 		<AppContext.Provider
 			value={{
@@ -83,6 +97,7 @@ const AppProvider = ({ children }) => {
 				setCharacterName,
 				displayAlert,
 				clearAlert,
+				getUserStats,
 			}}
 		>
 			{children}

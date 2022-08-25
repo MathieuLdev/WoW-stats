@@ -7,6 +7,8 @@ import {
 	CLEAR_ALERT,
 	GET_MEDIA_BEGIN,
 	GET_MEDIA_SUCCESS,
+	GET_STATS_BEGIN,
+	GET_STATS_SUCCESS,
 } from "./actions";
 
 const reducer = (state, action) => {
@@ -43,7 +45,7 @@ const reducer = (state, action) => {
 		return {
 			...state,
 			realm: action.payload.realm,
-			realmSlug: action.payload.slug.slug,
+			realmSlug: action.payload.slug.slug.toLowerCase(),
 		};
 	}
 	if (action.type === SET_CHARACTER_NAME) {
@@ -66,6 +68,21 @@ const reducer = (state, action) => {
 			isLoading: false,
 			media: action.payload.assets,
 			characterInfos: action.payload.characterInfos,
+		};
+	}
+
+	if (action.type === GET_STATS_BEGIN) {
+		return {
+			...state,
+			isLoading: true,
+		};
+	}
+
+	if (action.type === GET_STATS_SUCCESS) {
+		return {
+			...state,
+			isLoading: false,
+			stats: action.payload,
 		};
 	}
 
